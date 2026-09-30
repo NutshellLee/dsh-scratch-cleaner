@@ -44,6 +44,20 @@ Three things make this worse than ordinary clutter:
 
 Warnings in the prompt help a little, and only a little: the workspace still ends up holding both kinds of file, with nothing to distinguish them.
 
+## What it costs, what it buys
+
+Cost, stated plainly — this is a small plugin, not a performance feature:
+
+- One directory read per session per turn end, plus removal of whatever that directory holds. Nothing runs during a turn, so cleanup never slows the agent's own work.
+- No file watcher, no polling, no background process, no index, no network call, and no runtime dependency (the schema helper is bundled into the built entry).
+- The cost is bounded by one directory, so it does not grow with the size of the workspace, and it does not walk the project tree.
+
+What it buys:
+
+- The workspace stays the size of the project, so tree-walking tools — file search, editor indexing, diffs — stop carrying one-off scripts.
+- Later turns stop reading the agent's own obsolete probes, which keeps the context about the work rather than about the scaffolding.
+- Nothing has to be classified: there is no scan, no age heuristic, and nothing to get wrong.
+
 ## The idea
 
 Stop trying to recognise rubbish. Give throwaway work a **place**, and make that place temporary:
