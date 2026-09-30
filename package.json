@@ -1,6 +1,6 @@
 {
   "name": "@nutshelllee/dsh-scratch-cleaner",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "DSH host plugin: confines agent scratch scripts to one directory per working directory, and deletes them when each turn ends.",
   "type": "module",
   "main": "lib/plugin.js",
