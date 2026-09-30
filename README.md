@@ -4,6 +4,34 @@
 
 A DeepSeek Harness host plugin that gives an agent one designated place for throwaway scripts, and empties that place at the end of every turn.
 
+**In one line:** zero configuration, no API keys, no model downloads — install it and the workspace stops collecting one-off scripts.
+
+## Before and after
+
+A day of agent work, without the plugin:
+
+```
+project/
+  src/…
+  probe-config.mjs        ← written to answer one question
+  probe2.mjs              ← the answer was wrong, so a second probe
+  check-final.mjs         ← "final" for about ten minutes
+```
+
+The same day, with the plugin:
+
+```
+project/
+  src/…
+  .dsh-scratch/           ← emptied at the end of every turn
+```
+
+and each turn end says exactly what it removed:
+
+```
+scratch-cleaner: turn 12 deleted 3 entries from D:\project\.dsh-scratch: probe-config.mjs, probe2.mjs, check-final.mjs
+```
+
 ## The problem
 
 Ask an agent to investigate something and it writes a script: a probe of a config file, a one-off harness for a tricky API, a temporary driver that checks one assumption. That is exactly what you want it to do — and it is also how a clean repository quietly fills up with `probe.mjs`, `probe2.mjs`, `check-final.mjs`.

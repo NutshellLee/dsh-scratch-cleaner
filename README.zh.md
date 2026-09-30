@@ -4,6 +4,34 @@
 
 一个 DeepSeek Harness 宿主插件：给智能体一个专门放临时脚本的地方，并在每一轮结束时把这个地方清空。
 
+一句话概括：零配置、不要密钥、不下模型——装上之后，工作区就不再收集一次性脚本。
+
+## 前后对比
+
+没有这个插件时，一天的智能体工作长这样：
+
+```
+project/
+  src/…
+  probe-config.mjs        ← 为了回答一个问题写的
+  probe2.mjs              ← 上个答案不对，于是又探了一次
+  check-final.mjs         ← 大概"最终"了十分钟
+```
+
+装上插件之后，同样的一天长这样：
+
+```
+project/
+  src/…
+  .dsh-scratch/           ← 每轮结束被清空
+```
+
+而且每次回合结束都会说清删了什么：
+
+```
+scratch-cleaner: turn 12 deleted 3 entries from D:\project\.dsh-scratch: probe-config.mjs, probe2.mjs, check-final.mjs
+```
+
 ## 问题从哪来
 
 你让智能体去查一件事，它就会写个脚本：探一下配置文件、给某个别扭的接口写个一次性验证、写个临时驱动去验证一个假设。这正是你想要它做的事，也正是干净的仓库悄悄堆满 probe.mjs、probe2.mjs、check-final.mjs 的原因。
