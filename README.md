@@ -134,6 +134,12 @@ node build.mjs
 - The plugin cannot see through a convention that is ignored: if the agent writes probes elsewhere, they stay there.
 - An entry that cannot be removed is retried at the next turn end; failures are logged, never silent.
 
+## Releases
+
+A new version number is published only when runtime behaviour, the public interface, or the installation path changes. Documentation-only changes ride along with the next real change instead of taking a number of their own — the version list is public, and every number is something someone may pin.
+
+What each published version contains is in [docs/CHANGELOG.md](./docs/CHANGELOG.md).
+
 ## License
 
 MIT
