@@ -1,0 +1,62 @@
+{
+  "name": "@nutshelllee/dsh-scratch-cleaner",
+  "version": "0.3.0",
+  "description": "DSH host plugin: confines agent scratch scripts to one directory per working directory, and deletes them when each turn ends.",
+  "type": "module",
+  "main": "lib/plugin.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NutshellLee/dsh-scratch-cleaner.git"
+  },
+  "homepage": "https://github.com/NutshellLee/dsh-scratch-cleaner#readme",
+  "bugs": {
+    "url": "https://github.com/NutshellLee/dsh-scratch-cleaner/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./lib/plugin.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/plugin.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "prepack": "node build.mjs",
+    "test": "node test/scratch-cleaner.test.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "scratch",
+    "cleanup",
+    "temporary-files"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  },
+  "license": "MIT"
+}

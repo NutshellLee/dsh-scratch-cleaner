@@ -1,0 +1,13 @@
+# dsh-scratch-cleaner bundle patch.
+#
+# Mounts the host half as the `scratch-cleaner` row. The row id stays
+# `scratch-cleaner` so existing profile patches and saved settings keep working.
+#
+# The module is addressed relative to this package (a bundle patch resolves its
+# relative specifiers against the bundle directory) rather than by bare package
+# name. On DSH 0.2 hosts a bare specifier of a profile-mounted third-party plugin
+# is resolved against the application directory, where this package is not
+# installed, and the entry then fails with ERR_MODULE_NOT_FOUND.
+- insert:
+    - id: scratch-cleaner
+      name: './lib/plugin.js'
